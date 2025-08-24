@@ -1,0 +1,128 @@
+<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="modalHeaderLabel"><span class="icon-fa fa fa-camera-retro text-danger"></span> {{ title}}</h4>
+    </div>
+<form role="form" name="frmAddContest" class="form-horizontal" novalidate data-ng-submit="SubmitFormData()" data-ng-hide="success == 1" >
+    <div class="modal-body" data-ng-hide="success == 1">
+
+        <div class="form-group">
+            <div class="col-sm-4" data-ng-class="{ 'has-error': frmAddContest.concontest.$invalid }">
+                <label for="concontest">Contest Entry</label>
+                <select class="form-control" name="concontest" required data-ng-model="formData.concontest">
+                    <option selected disabled value="">-- Please Select --</option>
+                    <!-- <option value="ESSAY" disabled>Childrens Essay Competition</option> -->
+                    <option value="ART">Childrens Art Competition</option>
+                    <option value="TALENTUNDER17">Kids Talent Show (6-17 years)</option>
+                    <option value="TALENTABOVE18">Adults Talent Show (18-29 years)</option>
+                    <!-- <option value="PHOTO">Open Photography Contest</option> -->
+                    <!-- <option value="CONCH">Open Conch Shell Contest</option> -->
+                </select>
+                <span class="help-block" data-ng-show="frmAddContest.concontest.$error.required">Required</span>
+            </div>
+            <div class="col-sm-4" data-ng-class="{ 'has-error': frmAddContest.conname.$invalid }">
+                <label for="conname">Contestant Name</label>
+                <input type="text" class="form-control" name="conname" placeholder="Full Name" required data-ng-model="formData.conname" data-ng-minlength="3" data-ng-maxlength="100">
+                <span class="help-block" data-ng-show="frmAddContest.conname.$error.required">Required</span>
+                <span class="help-block" data-ng-show="frmAddContest.conname.$error.minlength">Too Short. Please enter at least 3 characters.</span>
+                <span class="help-block" data-ng-show="frmAddContest.conname.$error.maxlength">Too long. Please limit to 100 characters.</span>
+            </div>
+            <div class="col-sm-4" data-ng-class="{ 'has-error': frmAddContest.conage.$invalid }">
+                <label for="conage">Contestant's Age <span class="text-muted">(on October 12, 2024)</span></label>
+                <input type="number" class="form-control" name="conage" placeholder="1 -100" required data-ng-model="formData.conage" min="1" max="100">
+                <span class="help-block" data-ng-show="frmAddContest.conage.$error.required">Required</span>
+                <span class="help-block" data-ng-show="frmAddContest.conage.$error.number">Invalid Age. Please enter a value between 1 and 100 (inclusive).</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-4" data-ng-class="{ 'has-error': frmAddContest.concontact.$invalid }">
+                <label for="concontact">Contact Name <span class="text-muted">(for contestants under 18 years)</span></label>
+                <input type="text" class="form-control" name="concontact" placeholder="Full Name" data-ng-model="formData.concontact" data-ng-minlength="3" data-ng-maxlength="100">
+                <span class="help-block text-danger" data-ng-show="frmAddContest.concontact.$error.minlength">Too Short. Please enter at least 3 characters.</span>
+                <span class="help-block text-danger" data-ng-show="frmAddContest.concontact.$error.maxlength">Too long. Please limit to 100 characters.</span>
+            </div>
+            <div class="col-sm-4" data-ng-class="{ 'has-error': frmAddContest.conphone.$invalid }">
+                <label for="conphone">Phone</label>
+                <input type="text" class="form-control" name="conphone" placeholder="Primary Phone" required data-ng-model="formData.conphone" data-ng-pattern="phoneNumPattern">
+                <span class="help-block" data-ng-show="frmAddContest.conphone.$error.required">Required</span>
+                <span class="help-block" data-ng-show="frmAddContest.conphone.$error.pattern">Please enter a valid 10 digit US phone number.</span>
+            </div>
+            <div class="col-sm-4" data-ng-class="{ 'has-error': frmAddContest.conemail.$invalid }">
+                <label for="conemail">Email address</label>
+                <input type="email" class="form-control" name="conemail" placeholder="Primary email" required data-ng-model="formData.conemail">
+                <span class="help-block" data-ng-show="frmAddContest.conemail.$error.required">Required</span>
+                <span class="help-block" data-ng-show="frmAddContest.conemail.$error.email">Please enter a valid email address.</span>
+            </div>
+        </div>
+        <!-- <div class="form-group">
+             <div class="col-sm-4" >
+                <label for="confiletype">Submission Type</label>
+                <select class="form-control" name="confiletype"  data-ng-model="formData.confiletype">
+                    <option selected disabled value=""> Please Select </option>
+                    <option value="TEXT">Document for Essay Competition</option>
+                    <option selected value="IMAGE">Image for Art/Photography Competition</option>
+                </select>
+            </div>
+            <div class="col-sm-12 alert alert-warning">
+                <label><span class="fa fa-lg fa-info-circle"></span> Please Note</label>
+                <p>By submitting your text or image to Utsov Inc., you are explicitly granting us the right to use them on the website or in print media.</p>
+                <p><small>We are unable to provide a file upload because of resource constraints. Please submit a link to any online storage service which can be directly accessed. Please note that we will not be able to validate your entry if we cannot access the link.</small></p>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-6">
+                <label for="confiletype">Submission Type</label>
+                <input type="text" class="form-control" name="confileurl" placeholder="Image" data-ng-model="formData.confiletype" value="IMAGE" disabled>
+            </div>
+            <div class="col-sm-6">
+              <label for="confileurl">Submission URL <span class="text-muted">(for self-hosted files)</span></label>
+              <input type="url" class="form-control" name="confileurl" placeholder="File Url - (starting with 'http://')" data-ng-model="formData.confileurl">
+              <span class="help-block text-danger" data-ng-show="frmAddContest.confileurl.$error.url">Please enter a valid URL</span>
+            </div>
+        </div> -->
+        <div class="form-group">
+            <div class="col-sm-12">
+                <label for="conmsg">Any special note for us or link to demo</label>
+                <textarea class="form-control" rows="3" name="conmsg" data-ng-model="formData.conmsg" data-ng-maxlength="300"></textarea>
+                <span class="help-block text-danger" data-ng-show="frmAddContest.conmsg.$error.maxlength">Too long. Please limit to 300 characters.</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+         <div class="form-group">
+            <div class="col-sm-9 text-danger">
+                <p data-ng-show="frmAddContest.$invalid" class="pull-left"><span class="fa fa fa-exclamation-circle"></span> Save is disabled until all required fields are filled in and all data errors (red) are corrected.</p>
+            </div>
+            <div class="col-sm-9 col-xs-12 alert alert-success" data-ng-show="success == 1">
+                <p class="pull-left"><span class="fa fa-lg fa-check-circle-o"></span> Your entry was successfully submitted. Please check events section for contest timings. We will contact you as needed.</p>
+            </div>
+            <div class="col-sm-9 col-xs-12 alert alert-danger" data-ng-show="success == 2">
+                <p class="pull-left"><span class="fa fa-lg fa-exclamation-circle"></span> There was an error saving your information. You could try again, or contact us via social media.</p>
+            </div>
+            <div class="col-sm-2 col-xs-12">
+                <!-- <button type="reset" class="btn btn-primary pull-right" data-ng-show="success !== 0" data-ng-hide="frmAddContest.$invalid">Reset Info</button> -->
+                <button type="submit" class="btn btn-primary pull-right" data-ng-hide="success == 1" data-ng-disabled="frmAddContest.$invalid">Save & Donate</button>
+            </div>
+            <div class="col-sm-1 col-xs-12">
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="modal-body" style="padding: 5px 20px"  data-ng-hide="success != 1" >
+
+    <div class="col-sm-12 col-xs-12 alert alert-success" >
+        <p class="pull-left"><span class="fa fa-lg fa-check-circle-o"></span> Your entry was successfully submitted. Please check events section for contest timings. We will contact you as needed.</p>
+    </div>
+
+    <!-- Notification Section -->
+    
+    <div class="modal-footer">
+        <div class="col-sm-11 small-padding">
+            &nbsp;
+        </div>
+        <div class="col-sm-1 small-padding">
+            <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    <!--span ng-show="renderCheckoutForDonate()"></span-->
+</div>

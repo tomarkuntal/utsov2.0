@@ -1,0 +1,324 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="modalHeaderLabel"><span class="icon-fa fa fa-money text-danger"></span> {{ title}}</h4>
+</div>
+<div class="modal-body" style="padding: 0px 20px">
+    <!-- Notification Section -->
+    <div data-ng-class="{ 'has-error': frmRegister.donamount.$invalid }" id="results" style="">
+        <div class="row">
+            <div class="col-lg-14" id="confirmation" style="display: none; text-align: left; color: green">
+                <div class="col-lg-1">
+                    <h1><span class="icon fa fa-check-circle-o" style="font-size: 80px;"></span></h1>
+                </div>
+                <div class="col-lg-9">
+                    <p class="lead">
+                        <br/>
+                        <u><b>Payment ID: <span id="txSuccessPaymentId"></span></b></u>. We have received your payment
+                        of amount <u><b>${{formData.donamount}}</b></u>. We sincerely appreciate your support
+                        and
+                        endorsements. We have sent an email to <u><b><span id="txEmail"></span></b></u> confirming your
+                        donation. Please remember to carry a copy of this email for verification.
+                    </p>
+                    <p class="lead">
+                        <br/>
+                        <i>Join us by becoming a <a class="btn btn-success" onclick="$('#addMember').click()"> Member </a> or register as a <a class="btn btn-success" onclick="$('#addvolunteer').click()"> Volunteer for Pujo</a></i>
+                    </p>
+                </div>
+                <div class="col-lg-2" style="">
+                    <img class="featurette-image img-responsive" src="img/Utsov_logo.png" alt="You can help">
+                </div>
+                <data class="">
+                    <hr class="featurette-divider" style="margin-top: 10px;margin-bottom: 5px;">
+                </data>
+            </div>
+            <div class="col-lg-14" id="unableToRegister" style="display: none;color: red;">
+                <div class="col-lg-1">
+                    <h1><span class="icon fa fa-exclamation-circle" style="font-size: 80px;"></span></h1>
+                </div>
+                <div class="col-lg-9">
+                    <p class="lead">
+                        <br/>
+                        Payment ID: <u><span id="txFailurePaymentId"></span></u></i>. You paypal transaction went through but we were unable to update our database. Please email
+                        <a href="mailto:utsov@utsov.org">utsov@utsov.org</a>
+                        with details of the transaction and we will get back to you as soon as possible. We apologise for the inconvenience."
+                    </p>
+                </div>
+                <div class="col-lg-2" style="">
+                    <img class="featurette-image img-responsive" src="img/Utsov_logo.png" alt="You can help">
+                </div>
+                <data class="">
+                    <hr class="featurette-divider" style="margin-top: 10px;margin-bottom: 5px;">
+                </data>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Prime Guest Options & Donation entry -->
+    <div class="" id="modal-body">
+            <div class=" col-lg-8">
+                <h5 class="row ">
+                    <table>
+                        <tr>
+                            <td > <h4><span class="icon fa fa-chevron-right" style="color: #b94a48"></span><span > Include Dinner coupons:&nbsp;  &nbsp;  </span></td>
+
+                            <td style="text-align: center">
+                                <label class="switch">
+                                    <input type="checkbox"   data-ng-model="formData.prepayFood"  ng-change="calculatePrimeGuest()" id="prepayFood" checked="true">
+                                    <span class="slider round"></span>
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                </h5> 
+            </div>
+            <div class=" col-lg-8">    
+                <div class="row ">
+                
+                    <div class="hidden-sm hidden-xs"><h4><span class="icon fa fa-chevron-right" style="color: #b94a48"></span>&nbsp;Both days {{formData.foodOption}}:</h4></div>
+                    <div class="hidden-lg hidden-md"><h4><span class="icon fa fa-chevron-right" style="color: #b94a48"></span>&nbsp;Both days {{formData.foodOption}}:</h4></div>
+                    <div class="col-lg-12">
+                        <table class="table-small table-hover">
+                            <tr>
+                                
+                                <td>
+                                    <div class="hidden-sm hidden-xs">Adults&nbsp;<span class="icon fa fa-star" style="color: #b94a48; "></span></div>
+                                    <div class="hidden-lg hidden-md"><h5>Adults&nbsp;<span class="icon fa fa-star" style="color: #b94a48; "></span></h5></div>
+                                </td>
+                                <td><div class="input-group "><span class="input-group-addon" >${{formData.bothDayAdAmt}}</span>
+                                    <input type="number" step="1" class="form-control" id="adbothdays" name="adbothdays" placeholder="#"
+                                    data-ng-model="formData.adbothdays"
+                                    min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+                                <td>
+                                    <div class="hidden-sm hidden-xs">&nbsp;&nbsp;Kids(6+)</div>
+                                    <div class="hidden-lg hidden-md"><h5>Kids(6+)</h5></div>
+                                </td>
+                                <td><div class="input-group"><span class="input-group-addon"> ${{formData.bothDayKidAmt}}</span>
+                                    <input type="number" step="1" class="form-control" id="kidbothdays" name="kidbothdays"
+                                    placeholder="#" data-ng-model="formData.kidbothdays"
+                                    min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="hidden-sm hidden-xs">Students</div>
+                                    <div class="hidden-lg hidden-md"><h5></h5>Students</h5></div>
+                                </td>
+                                <td><div class="input-group"><span class="input-group-addon">${{formData.bothDayStuAmt}}</span>
+                                    <input type="number" step="1" class="form-control" id="stubothdays" name="stubothdays" 
+                                        placeholder="#" data-ng-model="formData.stubothdays" min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+
+                <div class="row ">
+
+                    <div class="hidden-sm hidden-xs"><h4><span class="icon fa  fa-chevron-right" style="color: #b94a48"></span>&nbsp;Saturday only {{formData.foodOption}}:</h4></div>
+                    <div class="hidden-lg hidden-md"><h4><span class="icon fa  fa-chevron-right" style="color: #b94a48"></span>&nbsp;Saturday only {{formData.foodOption}}:</h4></div>
+
+                    <div class="col-lg-12">
+                        <table class="table-small table-hover">
+                            <tr>
+                                
+                                <td>
+                                    <div class="hidden-sm hidden-xs">Adults&nbsp;<span class="icon fa fa-star" style="color: #b94a48; "></span></div>
+                                    <div class="hidden-lg hidden-md"><h5>Adults&nbsp;<span class="icon fa fa-star" style="color: #b94a48; "></span></h5></div>
+                                </td>
+                                
+                                <td><div class="input-group"><span class="input-group-addon">${{formData.satAdAmt}}</span><input type="number" step="1" class="form-control" id="adsat" name="adsat"
+                                    placeholder="#" data-ng-model="formData.adsat" min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+                                <td>
+                                    <div class="hidden-sm hidden-xs">&nbsp;&nbsp;Kids(6+)</div>
+                                    <div class="hidden-lg hidden-md"><h5>Kids(6+)</h5></div>
+                                </td>
+                                <td><div class="input-group"><span class="input-group-addon">${{formData.satKidAmt}}</span>
+                                    <input type="number" step="1" class="form-control" id="kidsat" name="kidsat" 
+                                        placeholder="#"  data-ng-model="formData.kidsat" min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="hidden-sm hidden-xs">Students</div>
+                                    <div class="hidden-lg hidden-md"><h5></h5>Students</h5></div>
+                                </td>
+                                <td><div class="input-group"><span class="input-group-addon">${{formData.satStuAmt}}</span>
+                                    <input type="number" step="1" class="form-control" id="stusat" name="stusat" 
+                                        placeholder="#" data-ng-model="formData.stusat" min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+
+                <div class="row ">
+                    <div class="hidden-sm hidden-xs"><h4><span class="icon  fa fa-chevron-right" style="color: #b94a48"></span>&nbsp;Sunday only {{formData.foodOption}}:</h4></div>
+                    <div class="hidden-lg hidden-md"><h4><span class="icon  fa fa-chevron-right" style="color: #b94a48"></span>&nbsp;Sunday only {{formData.foodOption}}:</h4></div>
+
+                    <div class="col-lg-12">
+                        <table class="table-small table-hover">
+                            <tr>
+                                
+                                <td>
+                                    <div class="hidden-sm hidden-xs">Adults&nbsp;<span class="icon fa fa-star" style="color: #b94a48; "></span></div>
+                                    <div class="hidden-lg hidden-md"><h5>Adults&nbsp;<span class="icon fa fa-star" style="color: #b94a48; "></span></h5></div>
+                                </td>
+                                
+                                <td><div class="input-group"><span class="input-group-addon">${{formData.sunAdAmt}}</span>
+                                    <input type="number" step="1" class="form-control" id="adsun" name="adsun" 
+                                        placeholder="#" data-ng-model="formData.adsun" min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+
+                                <td>
+                                    <div class="hidden-sm hidden-xs">&nbsp;&nbsp;Kids(6+)</div>
+                                    <div class="hidden-lg hidden-md"><h5>Kids(6+)</h5></div>
+                                </td>
+                                <td><div class="input-group"><span class="input-group-addon">${{formData.sunKidAmt}}</span>
+                                    <input type="number" step="1" class="form-control" id="kidsun" name="kidsun" 
+                                        placeholder="#" data-ng-model="formData.kidsun" min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+
+                                
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="hidden-sm hidden-xs">Students</div>
+                                    <div class="hidden-lg hidden-md"><h5></h5>Students</h5></div>
+                                </td>
+                                <td><div class="input-group"><span class="input-group-addon">${{formData.sunStuAmt}}</span>
+                                    <input type="number" step="1" class="form-control" id="stusun" name="stusun" 
+                                        placeholder="#" data-ng-model="formData.stusun" min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="row ">
+                    <div class="hidden-sm hidden-xs"><h4><span class="icon  fa fa-chevron-right" style="color: #b94a48"></span>&nbsp;Additional donation:</h4></div>
+                    <div class="hidden-lg hidden-md"><h4><span class="icon  fa fa-chevron-right" style="color: #b94a48"></span>&nbsp;Additional donation:</h4></div>
+
+                    <div class="col-lg-12">
+                        <table class="table-small table-hover">
+                            <tr>
+                                <td>
+                                    <div class="hidden-sm hidden-xs">&nbsp;Amount</div>
+                                    <div class="hidden-lg hidden-md"><h5></h5>&nbsp;Amount</h5></div>
+                                </td>
+                                <td><div class="input-group"><span class="input-group-addon " >$</span>
+                                    <input type="number" step="1.00" class="form-control" id="adddon" name="adddon" style="text-align:right;"
+                                        placeholder="0.00" data-ng-model="formData.adddon" min="0" required ng-change="calculatePrimeGuest()" style="padding: 8px 6px;"/></div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="col-lg-4 hidden-xs hidden-sm hidden-md">
+                <img class="featurette-image img-responsive" src="img/Utsov_logo.png" alt="You can help">
+            </div>
+            
+            
+       
+        <form role="form" name="frmRegister" class="form-horizontal" novalidate>
+            <div class="row col-lg-12" data-ng-class="{ 'has-error': frmRegister.donamount.$invalid }" >
+                
+                <div class="col-lg-4 col-md-4" >
+                    <h4 ><span class="icon  fa fa-money " style="color: #b94a48"></span>&nbsp;<b>Total Registration Amount</b></h4>
+                    <!--label for="donamount">Total Ticket prices + Donation Amount :</label-->
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input readonly type="number" step="1.00" class="form-control" id="donamount" name="donamount"
+                                placeholder="0.00"
+                                data-ng-model="formData.donamount"
+                                min="30"
+                                max="1000000" required >
+
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div data-ng-class="{ 'disable-paypal': frmRegister.donamount.$invalid }" id="paypal-button" style="padding-top: 10px"></div>
+                </div>
+            </div>
+            <div class="row" data-ng-class="{ 'has-error': frmRegister.donamount.$invalid }">
+                
+                <div class=" text-center col-lg-12">
+                    <span class="help-block text-danger" data-ng-show="frmRegister.donamount.$error.min">Minimum donation amount is $ 30.00</span>
+                    <span class="help-block text-danger" data-ng-show="frmRegister.donamount.$error.max">Invalid amount.That is too much!!!</span>
+                    <span class="help-block text-danger" data-ng-show="frmRegister.donamount.$error.kidError">Kids must be accompanied by adults on the same day(s).</span>
+                    <!--span class="help-block text-danger" data-ng-show="frmRegister.donamount.$error.numTicketsErr">Maximum number of tickets per transaction is 10 .</span-->
+                    <span class="help-block text-danger"  data-ng-model="formData.numTickets" id="numTickets" name="numTickets" data-ng-show="frmRegister.donamount.$error.numTicketsErr">Total tickets - {{formData.numTickets}}, (Saturday: {{formData.numSatTickets}}, Sunday: {{formData.numSunTickets}}) exceeds maximum of 50 tickets per transaction. </span>
+                    <span class="help-block " style="color: green;"  data-ng-model="formData.withDinner" >{{formData.withDinner}}</span>
+                    <span class="help-block " style="color: green;"  data-ng-model="formData.tenPerDis" >{{formData.tenPerDisc}}</span>
+                    
+                    <span data-ng-hide="frmRegister.donamount.$invalid"><h4><i>{{formData.primeGuestLevel}}</i></h4></span>
+                </div>
+
+                
+            </div>
+            <h5>
+                <span class="icon fa fa-star" style="color: #b94a48; "></span>
+                <span >
+                    <i>Early Bird Discounts Applied.</i>
+                </span>
+                <br>
+                <span class="icon fa fa-star" style="color: #b94a48; "></span>
+                <span >
+                    <i>Premium Guarenteed Seating with Early Bird Registration for the entire ticket (Limited numbers - available for early registrants only).</i>
+                </span>
+                <br>
+                <span class="icon fa fa-info-circle" style="color: #b94a48"> </span>
+                <span>
+                    <i>Kids 6 years of age and under served free pizza. Student ID check required at the venue.</i>
+                </span>
+                <br>
+               
+            </h5>
+            
+        </form>
+    </div>
+
+    
+    
+</div>   
+<div class="modal-footer">
+    <div class="col-sm-10 small-padding" >
+        <span style="font-size: 12px;color: #dd4814; text-align: left; "> Utsov is a registered 501 (c)(3) not-for-profit organaization. Your entire donation may be tax-deductible. Please talk to your tax professional.</span>
+    </div>
+    <div class="col-sm-1">
+        <button type="submit" class="btn btn-primary pull-right" data-ng-click="reset()">Reset</button>
+    </div>
+    <div class="col-sm-1">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>
+<!--div class="modal-footer">
+    <div class="col-sm-11 small-padding" style="font-size: 12px;color: #dd4814; text-align: left; ">
+       
+            Utsov is a registered 501 (c)(3) not-for-profit organaization. Your entire donation may be tax-deductible.
+            Please talk to your tax professional for details.
+    </div>
+    <div class="col-sm-11 small-padding">
+        <button type="submit" class="btn btn-primary pull-right" data-ng-click="reset()">Reset</button>
+    </div>
+    <div class="col-sm-1 small-padding">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div-->
+<span ng-show="renderCheckout('paypal-button')"></span>
+

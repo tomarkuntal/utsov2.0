@@ -1,0 +1,173 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="modalHeaderLabel"><span class="icon-fa fa fa-money text-danger"></span> {{ title}}</h4>
+</div>
+<div class="modal-body" style="padding: 5px 20px">
+    <!-- Notification Section -->
+    <div data-ng-class="{ 'has-error': frmRegister.donamount.$invalid }" id="results" style="display: none;">
+        <div class="row">
+            <div class="col-lg-14" id="confirmation" style="display: none; text-align: left; color: green">
+                <div class="col-lg-1">
+                    <h1><span class="icon fa fa-check-circle-o" style="font-size: 80px;"></span></h1>
+                </div>
+                <div class="col-lg-9">
+                    <p class="lead">
+                        <br/>
+
+                        <u><b>Payment ID: <span id="txSuccessPaymentId"></span></b></u>. We have received your payment
+                        of amount <u><b>${{formData.donamount}}</b></u>. We sincerely appreciate your support
+                        and
+                        endorsements. We have sent an email to <u><b><span id="txEmail"></span></b></u> confirming you
+                        donation.
+                    </p>
+                </div>
+                <div class="col-lg-2" style="">
+                    <img class="featurette-image img-responsive" src="img/Utsov_logo.png" alt="You can help">
+                </div>
+            </div>
+            <div class="col-lg-14" id="unableToRegister" style="display: none;color: red;">
+                <div class="col-lg-1">
+                    <h1><span class="icon fa fa-exclamation-circle" style="font-size: 80px;"></span></h1>
+                </div>
+                <div class="col-lg-9">
+                    <p class="lead">
+                        <br/>
+
+                        Payment ID: <u><span id="txFailurePaymentId"></span></u></i>. You paypal transaction went
+                        through but we were unable to update our database. Please email
+                        <a href="mailto:utsov@utsov.org">utsov@utsov.org</a>
+                        with details of the transaction and we will get back to you as soon as possible. We are very
+                        sorry
+                        for
+                        inconvenience."
+                    </p>
+                </div>
+                <div class="col-lg-2" style="">
+                    <img class="featurette-image img-responsive" src="img/Utsov_logo.png" alt="You can help">
+                </div>
+            </div>
+
+        </div>
+        <data class="">
+            <hr class="featurette-divider" style="margin-top: 10px;margin-bottom: 5px;">
+        </data>
+    </div>
+
+    <!-- Prime Guest Options & Donation entry -->
+    <div class="" id="modal-body">
+        <!-- <div class="row">
+        <span class="lead" style="font-size: 20px;">We encourage you to donate generously to maximise benefits for people affected.</span>
+        <br/>&nbsp;
+        </div> -->
+        <div class="row">
+            <div class="col-lg-2" style="">
+                <img class="featurette-image img-responsive" src="img/Utsov_logo.png" alt="You can help">
+            </div>
+            <div class="col-lg-8">
+                <br/>
+                <h4 class="featurette-heading">
+                    <span class="icon fa fa-bullhorn"></span>&nbsp;Utsov is helping with money and supplies. We need your support.
+                </h4>
+                <p>
+                    Currently, there is still shortage of oxygen and other essential medical kits for people suffering from respiratory complications due to COVID-19. 
+                    We have pledged and remain commited to working with several vendors from US and India to send Oxygen Concentrators and other life saving supplies to India. 
+                    We are working with organizations such as  
+                    <a style="background-color:rgb(241, 240, 156); color:#cc3703" href="https://humanityhospital.org/" target="_blank"><span class="icon fa fa-external-link"></span> Humanity Hospital</a>,&nbsp;
+                    <a style="background-color:rgb(241, 240, 156); color:#cc3703" href="https://muktiweb.org/" target="_blank"><span class="icon fa fa-external-link"></span> Mukti</a>, 
+                    <a style="background-color:rgb(241, 240, 156); color:#cc3703" href="https://nayantaratrust.com/" target="_blank"><span class="icon fa fa-external-link"></span> Nayantara</a>, Tapasya and
+                    <a style="background-color:rgb(241, 240, 156); color:#cc3703" href="https://www.sanrai.com/covidrelief/" target="_blank"><span class="icon fa fa-external-link"></span> Sanrai International</a> 
+                    to make this happen as fast as possible.
+                </p>
+                <p>
+                    Utsov partnered with Tapasya, India based NGO and Mukti contributed to support Covid units in different Cities and Villages in North and South 24 Parganas districts of West Bengal by providing several 5 L and 10 L Oxygen Concentrators, and other essential medical kits to affected families due to second wave of COVID. 
+                </p>
+                <p>
+                    Utsov partnered with Tapasya and is also currently working with Mukti to provide immediate support to the people/kids who lost their earning members in the second wave of COVID.
+                </p>
+                <p>
+We are also in the process of evaluating new organizations recommended by friends of Utsov.
+</p>
+
+                <h4>We request you to donate generously and help us have a bigger impact.</h4>
+                <br/>
+            </div>
+            <div class="col-lg-2" style="">
+                <a href="https://time.com/5964796/india-covid-19-failure/" target="_blank" > <img class="featurette-image img-responsive" src="img/indiacrisis.png" alt="You can help"></a>
+            </div>
+            
+        </div>
+
+        <data class="row">
+            <hr class="featurette-divider" style="margin-top: 10px;margin-bottom: 5px;">
+        </data>
+        <form role="form" name="frmRegister" class="form-horizontal" novalidate>
+            <div class="row" data-ng-class="{ 'has-error': frmRegister.donamount.$invalid }">
+                <div class="row">
+                    <div class="text-center">
+                        <div class="col-lg-2" style="margin-top: 10px">
+                            &nbsp;
+                        </div>
+                        <div class="col-lg-2" style="margin-top: 10px">
+                            <label for="donamount">Donation Amount</label>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="number" step="0.01" class="form-control" id="donamount" name="donamount"
+                                       placeholder="Your donation amount "
+                                       data-ng-model="formData.donamount"
+                                       min="15"
+                                       max="1000000" required >
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div data-ng-class="{ 'disable-paypal': frmRegister.donamount.$invalid }" id="{{paypalbuttonId}}" style="padding-top: 10px"></div>
+
+                        </div>
+                        <div class="col-lg-2" style="margin-top: 10px">
+                            &nbsp;
+                        </div>
+
+                    </div>
+                    <div class=" text-center col-lg-12">
+                        <br/>
+                        <span class="help-block text-danger" data-ng-show="frmRegister.donamount.$error.min">Minimum donation amount is $ 15.00</span>
+                        <span class="help-block text-danger" data-ng-show="frmRegister.donamount.$error.max">Invalid amount.That is too much!!!</span>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+        <data class="">
+            <hr class="featurette-divider" style="margin-top: 10px;margin-bottom: 5px;">
+        </data>
+    </div>
+
+    <div class="col-lg-14 text-center">
+        <address>
+            <h4 class="featurette-heading">You can also send you donation from your US bank account using <span class="text-danger"> <a href="https://www.zellepay.com/" target="_blank">Zelle® </a></span>by selecting <span class="text-danger">utsov@utsov.org</span> as the recipient.</h4>
+            <i>If you prefer physical check, please make it payable to “Utsov Inc.” and send it to our mailing address:</i><br>
+            <strong><b>Utsov, Inc.</b></strong><br>
+            46 Linden Ln,
+            Plainsboro, NJ-08536<br>
+            <i>Please remember to send us your contact info if you want a reciept.</i></p>
+        </address>
+    </div>
+    <div class="col-lg-14">
+        <p style="color: #dd4814">
+            Utsov is a registered 501 (c)(3) not-for-profit organaization. Your entire donation may be tax-deductible.
+            Please talk to your tax professional for details.
+        </p>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-11 small-padding">
+            <button type="submit" class="btn btn-primary pull-right" data-ng-click="reset()">Reset</button>
+        </div>
+        <div class="col-sm-1 small-padding">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+    <span ng-show="renderCheckout('{{paypalbuttonId}}')"></span>
+</div>
