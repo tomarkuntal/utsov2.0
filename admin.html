@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html class="no-js" >
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Utsov Administartion</title>
+        <meta name="description" content="Utsov Administartion Page">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+        <link rel="stylesheet" href="css/utsov.css">
+        <link rel="stylesheet" href="css/admin.css">
+        <link rel="stylesheet" href="css/custom.css">
+
+    </head>
+    <body data-ng-app="utsovAdminApp">
+        <!--[if lte IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!----------- Navigation ---------->
+       <div class="page-container">
+  
+            <!-- top navbar -->
+            <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+               <div class="container-fluid">
+                <div class="navbar-header">
+                   <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                   </button>
+                   <a class="navbar-brand" href="#">Utsov Admin</a>
+                </div>
+                <div class="navbar-collapse collapse navbar-right" id="topbar" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+               </div>
+            </div>
+
+            <div class="container-fluid">
+              <div class="row row-offcanvas row-offcanvas-left">
+
+                <!-- sidebar -->
+                <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+                    <ul class="nav">
+                      <li><a href="#/ListUsers">Users</a></li>
+                      <li><a href="#/ListVolunteers">Volunteers</a></li>
+                      <li><a href="#/ListSponsors">Sponsors</a></li>
+                      <li><a href="#/ListSubmissions">Submissions</a></li>
+                      <li><a href="#/ListDonations">Donations</a></li>
+                      <li><a href="#/AddDonation">Register & Donate</a></li>
+                      <!--<li><h3>Test</h3></li>
+                      <li class="active"><a href="#">Table1</a></li>
+                      <li><a href="#">Table 2</a></li>
+                      <li><a href="#">Table 3</a></li>    -->
+                    </ul>
+                </div>
+
+                <!-- view area -->
+                <div data-ng-view class="col-xs-12 col-sm-9" >
+
+                </div><!-- /.col-xs-12 main -->
+
+
+            </div><!--/.row-->
+          </div><!--/.container-->
+        </div><!--/.page-container-->
+        
+
+        <!----------- Footer ---------->
+        <footer role="contentinfo">
+          <p><small>Copyright &copy; Utsov Inc.</small></p>
+        </footer>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="js/vendor/angular.min.js"></script>
+        <script src="js/vendor/angular-route.min.js"></script>
+        <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/admin.js"></script>
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+    </body>
+</html>
