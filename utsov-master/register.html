@@ -85,8 +85,8 @@
         }
         
         /* Registration Form Styles */
-        .early-bird-banner {
-            background: #d32f2f !important;
+        .registration-status-banner {
+            background: #1976d2 !important;
             color: white !important;
             padding: 12px 20px !important;
             border-radius: 8px !important;
@@ -101,7 +101,7 @@
         }
         
         .check-icon {
-            background: #d32f2f !important;
+            background: #1976d2 !important;
             color: white !important;
             width: 20px !important;
             height: 20px !important;
@@ -119,7 +119,7 @@
         }
         
         .close-banner {
-            background: #d32f2f !important;
+            background: #1976d2 !important;
             color: white !important;
             border: none !important;
             width: 24px !important;
@@ -577,7 +577,7 @@
         <div class="container">
             <div class="hero-content">
                 <h1 class="hero-title">🎉 Register for Utsov 2025</h1>
-                <p class="hero-subtitle">Join us for an incredible celebration of culture, music, and community</p>
+                <p class="hero-subtitle">Regular registration is now open! Join us for an incredible celebration of culture, music, and community</p>
             </div>
         </div>
     </div>
@@ -585,13 +585,13 @@
     <!-- Registration Section -->
     <div class="padded-section">
         <div class="container">
-            <!-- Early Bird Banner -->
+            <!-- Registration Status Banner -->
             <div class="row">
                 <div class="col-12">
-                    <div class="early-bird-banner">
+                    <div class="registration-status-banner">
                         <div class="banner-content">
-                            <span class="check-icon">✓</span>
-                            <span class="banner-text">Register Now! Early Bird Registration with Premium Seating option closes on 08/24 or sooner</span>
+                            <span class="check-icon">ℹ</span>
+                            <span class="banner-text">Early Bird Registration has ended. Regular registration is now open for Utsov Durga Puja 2025!</span>
                             <button class="close-banner" onclick="closeBanner()">×</button>
                         </div>
                     </div>
@@ -620,7 +620,7 @@
                         <div class="pricing-grid">
                             <div class="pricing-item">
                                 <label class="pricing-label">Adults <span class="required-star">*</span></label>
-                                <div class="price-display">$110</div>
+                                <div class="price-display">$130</div>
                                 <input type="number" class="quantity-input" id="bothDaysAdults" min="0" max="20" value="0">
                             </div>
                             <div class="pricing-item">
@@ -645,7 +645,7 @@
                         <div class="pricing-grid">
                             <div class="pricing-item">
                                 <label class="pricing-label">Adults</label>
-                                <div class="price-display">$80</div>
+                                <div class="price-display">$90</div>
                                 <input type="number" class="quantity-input" id="saturdayAdults" min="0" max="20" value="0">
                             </div>
                             <div class="pricing-item">
@@ -779,8 +779,8 @@
             const donationAmount = parseFloat(document.getElementById('donationAmount').value) || 0;
             
             // Calculate totals for each category
-            const bothDaysTotal = (bothDaysAdults * 110) + (bothDaysStudents * 110) + (bothDaysKids * 80);
-            const saturdayTotal = (saturdayAdults * 80) + (saturdayStudents * 65) + (saturdayKids * 45);
+            const bothDaysTotal = (bothDaysAdults * 130) + (bothDaysStudents * 110) + (bothDaysKids * 80);
+            const saturdayTotal = (saturdayAdults * 90) + (saturdayStudents * 65) + (saturdayKids * 45);
             const sundayTotal = (sundayAdults * 65) + (sundayStudents * 60) + (sundayKids * 45);
             
             let totalAmount = bothDaysTotal + saturdayTotal + sundayTotal + donationAmount;
@@ -808,7 +808,7 @@
         
         // Close banner function
         function closeBanner() {
-            const banner = document.querySelector('.early-bird-banner');
+            const banner = document.querySelector('.registration-status-banner');
             if (banner) {
                 banner.style.display = 'none';
             }

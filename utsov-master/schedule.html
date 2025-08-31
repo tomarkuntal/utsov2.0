@@ -263,7 +263,7 @@
                             <span class="activity-value">September 22nd, 7:00 PM</span>
                         </div>
                     </div>
-                                         <div style="display: flex; align-items: flex-start; gap: 20px; padding: 0 15px;">
+                    <div style="display: flex; align-items: flex-start; gap: 20px; padding: 0 15px;">
                          <ul class="activity-list" style="flex: 1;">
                              <li>Bring your own pencils and coloring supplies</li>
                              <li>Paper will be provided</li>
@@ -275,6 +275,11 @@
                              <img src="img/Drawing_art_comp.jpeg" alt="Drawing Competition" style="width: 200px; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                          </div>
                      </div>
+                    <div class="text-center" style="margin-top: 20px;">
+                        <button type="button" class="btn-modern btn-gold" data-toggle="modal" data-target="#contestModal" data-contest="ART">
+                            <i class="fa fa-camera-retro"></i> Register for Art Competition
+                        </button>
+                    </div>
                 </div>
 
                 <div class="festive-card">
@@ -293,7 +298,7 @@
                             <span class="activity-value">Vocal, Dance, Instrumental, Recitation</span>
                         </div>
                     </div>
-                                         <div style="display: flex; align-items: flex-start; gap: 20px; padding: 0 15px;">
+                    <div style="display: flex; align-items: flex-start; gap: 20px; padding: 0 15px;">
                          <ul class="activity-list" style="flex: 1;">
                              <li>Submit video link during registration or email to activities@utsov.org</li>
                              <li>Registration deadline: September 22nd, 7:00 PM</li>
@@ -305,6 +310,11 @@
                              <img src="img/Talent Show.jpeg" alt="Talent Show" style="width: 200px; height: 200px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
                          </div>
                      </div>
+                    <div class="text-center" style="margin-top: 20px;">
+                        <button type="button" class="btn-modern btn-gold" data-toggle="modal" data-target="#contestModal" data-contest="TALENT">
+                            <i class="fa fa-music"></i> Register for Talent Show
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -332,6 +342,77 @@
             <p>&copy; 2025 Utsov Inc. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Contest Registration Modal -->
+    <div class="modal fade" id="contestModal" tabindex="-1" role="dialog" aria-labelledby="contestModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="contestModalLabel">
+                        <i class="fa fa-camera-retro"></i> Register For Contest
+                    </h4>
+                </div>
+                <form role="form" name="frmAddContest" class="form-horizontal" novalidate>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="concontest">Contest Entry <span class="text-danger">*</span></label>
+                                <select class="form-control" name="concontest" required>
+                                    <option selected disabled value="">-- Please Select --</option>
+                                    <option value="ART">Childrens Art Competition</option>
+                                    <option value="TALENTUNDER17">Kids Talent Show (6-17 years)</option>
+                                    <option value="TALENTABOVE18">Adults Talent Show (18-29 years)</option>
+                                </select>
+                                <span class="help-block text-danger">Required</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="conname">Contestant Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="conname" placeholder="Full Name" required>
+                                <span class="help-block text-danger">Required</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="conage">Contestant's Age (on October 12, 2024) <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" name="conage" placeholder="1-100" required min="1" max="100">
+                                <span class="help-block text-danger">Required</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-4">
+                                <label for="concontact">Contact Name (for contestants under 18 years)</label>
+                                <input type="text" class="form-control" name="concontact" placeholder="Full Name">
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="conphone">Phone <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="conphone" placeholder="Primary Phone" required>
+                                <span class="help-block text-danger">Required</span>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="conemail">Email address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" name="conemail" placeholder="Primary email" required>
+                                <span class="help-block text-danger">Required</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <label for="conmsg">Any special note for us or link to demo</label>
+                                <textarea class="form-control" rows="3" name="conmsg" placeholder="Please provide any additional information or demo links here..."></textarea>
+                            </div>
+                        </div>
+                        <div class="alert alert-warning">
+                            <i class="fa fa-exclamation-circle"></i> Save is disabled until all required fields are filled in and all data errors (red) are corrected.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn-modern btn-gold">Save & Donate</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap JS and jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

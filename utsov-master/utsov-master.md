@@ -1,7 +1,7 @@
 # UTSOV Website Changes Log
 
 ## Overview
-This document tracks all changes made to the UTSOV website during the development session. The changes focused on achieving perfect symmetry and proper image display between the Title Sponsor card and Artists card on the homepage.
+This document tracks all changes made to the UTSOV website during the development session. The changes focused on achieving perfect symmetry and proper image display between the Title Sponsor card and Artists card on the homepage, and later removing the large card headers to match the clean design of the philanthropy page.
 
 ## Files Modified
 
@@ -10,33 +10,33 @@ This document tracks all changes made to the UTSOV website during the developmen
 **Purpose**: Main homepage HTML structure
 
 #### Changes Made:
-1. **Commented out Artist Card Buttons** (Lines 271-279)
+1. **Removed Large Card Headers** (Lines 200-210)
+   - **REMOVED**: Large gradient headers with oversized text
+   - **REPLACED**: Simple h4 titles like philanthropy page
    ```html
-   <!-- 
-   <div class="artist-content">
-       <a href="artists.html" class="btn btn-primary btn-read-about">Meet Our Artists</a>
-       <a href="about.html" class="btn btn-outline-primary btn-read-about">Read About This</a>
-   </div>
-   -->
+   <!-- OLD: Large gradient headers -->
+   <h3 class="card-title" style="...large gradient styling...">Title Sponsor</h3>
+   
+   <!-- NEW: Simple clean headers -->
+   <h4>Title Sponsor</h4>
    ```
 
-2. **Replaced Bootstrap Carousel with Single Image Display** (Lines 231-268)
-   - **REMOVED**: Original Bootstrap carousel structure
-   - **ADDED**: Simple single image display
+2. **Updated Card Structure** (Lines 200-220)
+   - **CHANGED**: From `artist-card` class to `homepage-achievement-item` class
+   - **ADDED**: `sponsor-image-container` for sponsor image
+   - **MAINTAINED**: `artist-image-container` for artist slideshow
    ```html
-   <!-- Artist Image -->
-   <div class="artist-single-container">
-       <img src="img/Rupankar.jpg" alt="Rupankar Bagchi" class="artist-single-image">
-       <div class="artist-single-name">
-           <h4>Rupankar Bagchi</h4>
+   <div class="homepage-achievement-item">
+       <h4>Title Sponsor</h4>
+       <div class="sponsor-image-container">
+           <img src="img/sponsors/pc-chandra-2024-v2.jpg" alt="PC Chandra" class="sponsor-image">
        </div>
    </div>
    ```
 
-3. **Removed JavaScript** 
-   - Eliminated all carousel-related JavaScript code
-   - Removed image cycling functionality
-   - Simplified to static single image display
+3. **Maintained Artist Slideshow** 
+   - Kept the existing artist slideshow functionality
+   - Updated container styling to match philanthropy design
 
 ### 2. css/modern-utsov.css
 **Location**: css/modern-utsov.css
@@ -44,195 +44,148 @@ This document tracks all changes made to the UTSOV website during the developmen
 
 #### Major Changes Made:
 
-##### A. Card Layout & Structure
-1. **Unified Card Heights**
-   - **Desktop**: Both cards set to `height: 500px`
-   - **Tablet (≤768px)**: Both cards set to `height: 450px`
-   - **Mobile (≤480px)**: Both cards set to `height: 400px`
-
-2. **Flexbox Layout Implementation**
+##### A. New Homepage Card Styling
+1. **Homepage Achievement Items**
    ```css
-   .compact-sponsor, .compact-artist-card {
+   .homepage-achievement-item {
+       padding: var(--spacing-md);
+       background: var(--light-bg);
+       border-radius: var(--border-radius);
+       border-left: 4px solid var(--primary-color);
+       transition: var(--transition);
+       height: 100%;
        display: flex;
        flex-direction: column;
-       overflow: hidden;
-       padding: var(--spacing-md) var(--spacing-md) 0 var(--spacing-md);
+       justify-content: space-between;
+       min-height: 350px;
    }
    ```
 
-##### B. Title Heights (Perfect Symmetry)
-1. **Desktop**: Both titles `height: 40px`
-2. **Tablet**: Both titles `height: 35px`
-3. **Mobile**: Both titles `height: 30px`
-
-##### C. Image Container Symmetry
-1. **Sponsor Image Container**
+2. **Sponsor Image Container**
    ```css
-   .compact-sponsor .sponsor-highlight {
+   .sponsor-image-container {
        flex: 1;
        display: flex;
        align-items: center;
        justify-content: center;
-       margin: 0;
-       flex-shrink: 0;
-   }
-   ```
-
-2. **Artist Image Container**
-   ```css
-   .artist-single-container {
-       flex: 1;
-       display: flex;
-       flex-direction: column;
+       margin-top: var(--spacing-sm);
        border-radius: var(--border-radius);
        overflow: hidden;
-       background-color: rgba(0, 0, 0, 0.1);
+       background-color: rgba(0, 0, 0, 0.05);
+       min-height: 200px;
    }
    ```
 
-##### D. Image Display Properties
+3. **Updated Artist Image Container**
+   ```css
+   .artist-image-container {
+       flex: 1;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       margin-top: var(--spacing-sm);
+       border-radius: var(--border-radius);
+       overflow: hidden;
+       background-color: rgba(0, 0, 0, 0.05);
+       min-height: 200px;
+   }
+   ```
+
+##### B. Image Display Properties
 1. **Consistent Image Sizing**
    ```css
-   .compact-sponsor .sponsor-highlight img,
-   .artist-single-image {
+   .sponsor-image,
+   .artist-image {
        width: 100%;
        height: 100%;
        object-fit: contain;
+       max-height: 300px;
+       padding: var(--spacing-sm);
    }
    ```
 
-2. **Artist Name Display**
-   ```css
-   .artist-single-name {
-       text-align: center;
-       padding: 10px;
-       background-color: rgba(255, 255, 255, 0.9);
-   }
-   .artist-single-name h4 {
-       margin: 0;
-       color: var(--primary-color);
-       font-size: 1rem;
-       font-weight: 600;
-   }
-   ```
-
-##### E. Navigation Bar Enhancements
-1. **Increased Navbar Size**
-   ```css
-   .navbar {
-       min-height: 80px;
-       padding: 15px 0;
-   }
-   .navbar-brand img {
-       height: 50px;
-   }
-   .navbar-nav .nav-link {
-       font-weight: 600;
-       padding: 15px 20px !important;
-       font-size: 1rem;
-       text-transform: uppercase;
-       letter-spacing: 0.5px;
-   }
-   ```
-
-##### F. Header (Hero Section) Reduction
-1. **Reduced Header Heights**
-   ```css
-   .hero-section {
-       min-height: 50vh;
-       padding: var(--spacing-lg) 0;
-   }
-   ```
-   - **Desktop**: `min-height: 50vh`
-   - **Tablet**: `min-height: 40vh`
-   - **Mobile**: `min-height: 35vh`
-
-##### G. Responsive Design
+##### C. Responsive Design
 1. **Tablet Breakpoint (≤768px)**
-   - Card heights: `450px`
-   - Title heights: `35px`
-   - Padding adjustments: `var(--spacing-sm)`
+   - Image containers: `min-height: 150px`
+   - Images: `max-height: 200px`
+   - Cards: `min-height: 300px`
 
 2. **Mobile Breakpoint (≤480px)**
-   - Card heights: `400px`
-   - Title heights: `30px`
-   - Padding adjustments: `var(--spacing-xs)`
+   - Image containers: `min-height: 120px`
+   - Images: `max-height: 150px`
+   - Cards: `min-height: 250px`
 
 ## Technical Specifications
 
-### Perfect Symmetry Achieved:
-- **Card Heights**: Identical across all screen sizes
-- **Title Heights**: Identical across all screen sizes
-- **Image Containers**: Both use `flex: 1` for equal space distribution
-- **Image Display**: Both use `object-fit: contain` for consistent scaling
-- **Backgrounds**: Identical `rgba(0, 0, 0, 0.1)` backgrounds
-- **Padding**: Identical padding across both cards
+### Design Philosophy:
+- **Clean & Minimal**: Removed large gradient headers for cleaner look
+- **Consistent**: Matches philanthropy page card design
+- **Responsive**: Maintains functionality across all screen sizes
+- **Accessible**: Simple, readable typography
+
+### Card Structure:
+- **Header**: Simple h4 with primary color
+- **Content**: Image container with proper spacing
+- **Background**: Light background with subtle border accent
+- **Hover Effects**: Smooth transitions and shadow effects
 
 ### Responsive Breakpoints:
-1. **Desktop**: 500px card height, 40px title height
-2. **Tablet (≤768px)**: 450px card height, 35px title height
-3. **Mobile (≤480px)**: 400px card height, 30px title height
+1. **Desktop**: 350px card height, 200px image container
+2. **Tablet (≤768px)**: 300px card height, 150px image container
+3. **Mobile (≤480px)**: 250px card height, 120px image container
 
 ## Key Problems Solved
 
-### 1. Image Cropping Issue
-- **Problem**: Bootstrap carousel was cropping artist images
-- **Solution**: Replaced with single image display using `object-fit: contain`
+### 1. Large Header Issue
+- **Problem**: Large gradient headers were visually overwhelming
+- **Solution**: Replaced with simple h4 titles matching philanthropy page
 
-### 2. Card Asymmetry
-- **Problem**: Cards had different heights and layouts
-- **Solution**: Unified flexbox layout with identical heights and spacing
+### 2. Design Inconsistency
+- **Problem**: Homepage cards looked different from other pages
+- **Solution**: Implemented consistent card design across site
 
-### 3. Button Alignment
-- **Problem**: Buttons were outside cards and misaligned
-- **Solution**: Commented out buttons and restructured layout
+### 3. Visual Hierarchy
+- **Problem**: Headers dominated the content
+- **Solution**: Balanced design with proper content focus
 
-### 4. White Space Issues
-- **Problem**: Extra white space in cards affecting visual balance
-- **Solution**: Precise padding and height calculations
-
-### 5. Navigation Size
-- **Problem**: Navigation bar was too small
-- **Solution**: Increased navbar height and link padding
-
-### 6. Header Size
-- **Problem**: Header was too large
-- **Solution**: Reduced hero section heights across all breakpoints
+### 4. Mobile Experience
+- **Problem**: Large headers took up too much mobile space
+- **Solution**: Responsive design with appropriate sizing
 
 ## Current State
 
 ### Homepage Cards:
 1. **Title Sponsor Card**:
-   - Shows PC Chandra image
-   - Perfectly contained within card boundaries
-   - No extra white space
+   - Simple "Title Sponsor" header
+   - PC Chandra image in clean container
+   - Philanthropy-style card design
 
 2. **Artists Card**:
-   - Shows single Rupankar.jpg image
-   - Artist name displayed below image
-   - Identical height and layout to sponsor card
+   - Simple "Our Artists" header
+   - Artist slideshow in clean container
+   - Consistent styling with sponsor card
 
 ### Visual Result:
-- ✅ Perfect symmetry between both cards
-- ✅ Identical heights and widths
-- ✅ Same image container sizes
-- ✅ Aligned bottom edges
-- ✅ No cropping of images
-- ✅ Consistent styling and spacing
+- ✅ Clean, minimal design
+- ✅ Consistent with philanthropy page
+- ✅ Proper image display
+- ✅ Responsive across all devices
+- ✅ Maintains functionality
+- ✅ Better visual hierarchy
 
 ## Files Status
 - ✅ **index.html**: Modified and working
 - ✅ **css/modern-utsov.css**: Modified and working
-- ✅ **utsov-master.md**: Created for documentation
+- ✅ **utsov-master.md**: Updated documentation
 
 ## Next Steps
 When resuming work on this project:
 1. Read this markdown file to understand all changes made
 2. Check current state of index.html and css/modern-utsov.css
-3. Verify that both cards maintain perfect symmetry
-4. Test responsive design across different screen sizes
+3. Verify that cards maintain clean design across screen sizes
+4. Test responsive design and image display
 
 ---
 **Last Updated**: Current session
-**Status**: Complete - Perfect symmetry achieved
-**Notes**: All changes maintain website functionality while improving visual consistency
+**Status**: Complete - Clean card design implemented
+**Notes**: All changes maintain website functionality while improving visual consistency and user experience

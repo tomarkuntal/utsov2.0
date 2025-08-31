@@ -892,6 +892,8 @@ footer p, footer li {
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-light);
   transition: var(--transition);
+  overflow: hidden;
+  position: relative;
 }
 
 .sponsor-carousel-item:hover {
@@ -900,9 +902,10 @@ footer p, footer li {
 }
 
 .sponsor-carousel-item img {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 @keyframes scrollSponsors {
@@ -1047,6 +1050,14 @@ footer p, footer li {
   .sponsor-carousel-item {
     flex: 0 0 150px;
     height: 80px;
+    overflow: hidden;
+  }
+  
+  .sponsor-carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
   
   .footer-nav-buttons {
@@ -1481,7 +1492,7 @@ footer p, footer li {
 }
 
 .carousel-caption {
-  background: rgba(0, 0, 0, 0.6);
+  background: transparent;
   border-radius: var(--border-radius);
   padding: var(--spacing-sm);
 }
@@ -2809,7 +2820,7 @@ mark {
 .artist-card {
   background: var(--white);
   border-radius: var(--border-radius-large);
-  padding: var(--spacing-xl);
+  padding: var(--spacing-lg) var(--spacing-xl) 0 var(--spacing-xl);
   box-shadow: var(--shadow-medium);
   border: 2px solid var(--border-color);
   transition: var(--transition);
@@ -2887,11 +2898,12 @@ mark {
   height: 300px;
   overflow: hidden;
   border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--light-bg);
+  min-height: 250px;
 }
 
 .artist-image {
@@ -3708,7 +3720,7 @@ textarea.form-control {
 }
 
 #artist_carousel .carousel-caption {
-  background: rgba(0, 0, 0, 0.6);
+  background: transparent;
   border-radius: var(--border-radius);
   padding: var(--spacing-xs) var(--spacing-sm);
   bottom: 10px;
@@ -4665,3 +4677,71 @@ body .container > .cards-container {
 .artist-slide.active {
   opacity: 1;
 }
+
+/* Move Carousel Indicators Down */
+.carousel-indicators {
+  bottom: 5px !important;
+}
+
+@media screen and (min-width: 768px) {
+  .carousel-indicators {
+    bottom: 10px !important;
+  }
+}
+
+/* Disclaimer Text Styling */
+.disclaimer-text {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  border-left: 4px solid var(--primary-color);
+  box-shadow: var(--shadow-light);
+  margin: var(--spacing-lg) 0;
+}
+
+.disclaimer-text p {
+  margin: 0;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  text-align: center;
+  font-style: italic;
+}
+
+
+
+/* Responsive adjustments for disclaimer */
+@media (max-width: 768px) {
+  .disclaimer-text {
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-sm);
+  }
+  
+  .disclaimer-text p {
+    font-size: 0.85rem;
+  }
+  
+  .artist-card .artist-image-container {
+    min-height: 200px;
+  }
+  
+  .artist-card .artist-image {
+    max-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .disclaimer-text p {
+    font-size: 0.8rem;
+  }
+  
+  .artist-card .artist-image-container {
+    min-height: 180px;
+  }
+  
+  .artist-card .artist-image {
+    max-height: 180px;
+  }
+}
+
+
